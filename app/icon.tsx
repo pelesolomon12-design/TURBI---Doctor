@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { logoBase64 } from "./_logoBase64";
 
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
@@ -15,20 +16,18 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          overflow: "hidden",
           border: "2px solid #c9a84c",
         }}
       >
-        <span
-          style={{
-            fontSize: 32,
-            fontWeight: 800,
-            color: "#c9a84c",
-            fontFamily: "sans-serif",
-            lineHeight: 1,
-          }}
-        >
-          T
-        </span>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={logoBase64}
+          width={64}
+          height={64}
+          style={{ objectFit: "cover" }}
+          alt=""
+        />
       </div>
     ),
     { ...size }
