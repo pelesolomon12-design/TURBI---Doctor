@@ -29,9 +29,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="text-white font-bold text-2xl tracking-widest gold-shimmer">TURBI</span>
             </a>
             <nav className="hidden md:flex gap-8 text-sm text-gray-400">
-              <a href="/#about" className="hover:text-white transition-colors">אודות</a>
+              <a href="/about" className="hover:text-white transition-colors">עלינו</a>
               <a href="/#testimonials" className="hover:text-white transition-colors">המלצות</a>
-              <a href="/#contact" className="hover:text-white transition-colors">צרו קשר</a>
+              <a href="/contact" className="hover:text-white transition-colors">צרו קשר</a>
             </nav>
             <a href="/checkout" className="btn-gold px-6 py-2.5 rounded-xl text-sm">
               להזמנה ←

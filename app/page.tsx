@@ -2,7 +2,6 @@ import Link from "next/link";
 import { mainProduct, formatPrice } from "@/lib/products";
 import ScrollAnimator from "./components/ScrollAnimator";
 import VideoSection from "./components/VideoSection";
-import ContactSection from "./components/ContactSection";
 
 const benefits = [
   { icon: "🌿", title: "100% טבעי", desc: "מרכיבים טבעיים נבחרים בקפידה ללא תוספים מלאכותיים" },
@@ -175,9 +174,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ─── CONTACT ─── */}
-      <ContactSection />
 
       {/* ─── CTA ─── */}
       <section className="bg-hero py-24 px-6 text-center">
