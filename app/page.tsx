@@ -120,7 +120,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── BENEFITS ─── */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6 bg-section-alt">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-sm font-semibold tracking-widest text-amber-600 mb-3 fade-in">למה אנחנו?</p>
@@ -165,7 +165,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── TESTIMONIALS ─── */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6 bg-section-alt">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-sm font-semibold tracking-widest text-amber-600 mb-3 fade-in">לקוחות מרוצים</p>
