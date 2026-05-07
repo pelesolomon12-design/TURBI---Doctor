@@ -20,9 +20,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Sticky Nav */}
         <header className="fixed top-0 w-full z-50 bg-[#0d1117] bg-opacity-95 backdrop-blur-md border-b border-white border-opacity-5">
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="/" className="flex items-center gap-2">
-              <Image src="/hero.jpeg" alt="TURBI" width={36} height={36} className="rounded-full object-cover" />
-              <span className="text-white font-bold text-xl tracking-widest gold-shimmer">TURBI</span>
+            <a href="/" className="flex items-center gap-3">
+              <Image src="/hero.jpeg" alt="TURBI" width={52} height={52} className="rounded-full object-cover border-2 border-amber-400" />
+              <span className="text-white font-bold text-2xl tracking-widest gold-shimmer">TURBI</span>
             </a>
             <nav className="hidden md:flex gap-8 text-sm text-gray-400">
               <a href="/#about" className="hover:text-white transition-colors">אודות</a>
