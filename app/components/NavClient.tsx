@@ -11,7 +11,7 @@ export default function NavClient() {
     <header className="fixed top-0 w-full z-50 bg-[#0d1117] bg-opacity-95 backdrop-blur-md border-b border-white border-opacity-5">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-          <Image src="/hero.jpeg" alt="TURBI" width={48} height={48} className="rounded-full object-cover border-2 border-amber-400" />
+          <Image src="/hero.jpeg" alt="TURBI" width={64} height={64} className="object-contain" style={{ mixBlendMode: "screen" }} />
           <span className="text-white font-bold text-xl tracking-widest gold-shimmer">TURBI</span>
         </Link>
 
