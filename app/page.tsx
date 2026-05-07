@@ -114,14 +114,14 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white fade-in">{t.steps.title}</h2>
             <div className="gold-divider max-w-24 mx-auto mt-4 fade-in" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {t.steps.items.map((s, i) => (
-              <div key={i} className="fade-in bg-white bg-opacity-5 border border-white border-opacity-10 rounded-2xl p-6 text-center hover:bg-opacity-10 transition-all">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-amber-400 border-opacity-50 mb-4">
-                  <span className="gold-shimmer font-bold text-base">{s.num}</span>
+              <div key={i} className="fade-in text-center group">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-amber-400 border-opacity-40 mb-5 group-hover:border-opacity-80 transition-all duration-300">
+                  <span className="gold-shimmer font-bold text-lg">{s.num}</span>
                 </div>
                 <h3 className="font-bold text-white text-base mb-2">{s.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
+                <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
