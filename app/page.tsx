@@ -120,7 +120,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((b, i) => (
-              <div key={i} className="fade-in text-center bg-gray-50 rounded-3xl p-8 card-hover border border-gray-100">
+              <div key={i} className="fade-in text-center bg-white rounded-3xl p-8 card-hover border border-amber-100 shadow-sm">
                 <div className="text-5xl mb-4">{b.icon}</div>
                 <h3 className="font-bold text-gray-900 text-lg mb-2">{b.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{b.desc}</p>
@@ -131,24 +131,21 @@ export default function HomePage() {
       </section>
 
       {/* ─── HOW IT WORKS ─── */}
-      <section className="py-20 px-6 bg-section-alt">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-sm font-semibold tracking-widest text-amber-600 mb-3 fade-in">תהליך פשוט</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 fade-in">איך זה עובד?</h2>
+      <section className="py-24 px-6 bg-hero">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-sm font-semibold tracking-widest text-amber-400 mb-3 fade-in">תהליך פשוט</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white fade-in">איך זה עובד?</h2>
             <div className="gold-divider max-w-24 mx-auto mt-4 fade-in" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {steps.map((s, i) => (
-              <div key={i} className="fade-in text-center">
-                <div className="w-16 h-16 rounded-full bg-hero flex items-center justify-center mx-auto mb-4">
-                  <span className="gold-shimmer font-bold text-xl">{s.num}</span>
+              <div key={i} className="fade-in relative bg-white bg-opacity-5 border border-white border-opacity-10 rounded-2xl p-6 text-center hover:bg-opacity-10 transition-all">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-amber-400 border-opacity-50 mb-4">
+                  <span className="gold-shimmer font-bold text-base">{s.num}</span>
                 </div>
-                <h3 className="font-bold text-gray-900 text-lg mb-2">{s.title}</h3>
-                <p className="text-gray-500 text-sm">{s.desc}</p>
-                {i < steps.length - 1 && (
-                  <div className="hidden lg:block absolute mt-8 text-gray-300 text-2xl">←</div>
-                )}
+                <h3 className="font-bold text-white text-base mb-2">{s.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -165,7 +162,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
-              <div key={i} className="fade-in bg-gray-50 rounded-3xl p-7 border border-gray-100 card-hover">
+              <div key={i} className="fade-in bg-white rounded-3xl p-7 border border-amber-100 shadow-sm card-hover">
                 <div className="flex mb-3">
                   {Array.from({ length: t.stars }).map((_, j) => (
                     <span key={j} className="text-amber-400 text-lg">★</span>
