@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import Image from "next/image";
+import LogoImage from "./components/LogoImage";
 import "./globals.css";
 import { LanguageProvider } from "./providers/LanguageProvider";
 import NavClient from "./components/NavClient";
@@ -37,7 +37,7 @@ function FooterInner() {
   return (
     <footer className="bg-[#0d1117] border-t border-white border-opacity-5 py-10 px-6 text-center">
       <div className="flex items-center justify-center gap-2 mb-2">
-        <Image src="/hero.jpeg" alt="TURBI" width={48} height={48} className="object-contain" style={{ mixBlendMode: "screen" }} />
+        <LogoImage size={40} />
         <span className="gold-shimmer font-bold text-2xl tracking-widest">TURBI</span>
       </div>
       <FooterText />
