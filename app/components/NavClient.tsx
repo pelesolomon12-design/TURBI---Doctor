@@ -8,10 +8,10 @@ import LogoImage from "./LogoImage";
 export default function NavClient() {
   const { t } = useLanguage();
   return (
-    <header className="fixed top-0 w-full z-50 bg-[#0d1117] bg-opacity-95 backdrop-blur-md border-b border-white border-opacity-5">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-          <LogoImage size={56} />
+    <header className="fixed top-0 w-full z-50 h-16 bg-[#0d1117] bg-opacity-95 backdrop-blur-md border-b border-white border-opacity-5">
+      <div className="max-w-6xl mx-auto px-4 h-full flex items-center justify-between gap-4">
+        <Link href="/" className="flex items-center gap-2 flex-shrink-0 h-full">
+          <LogoImage size={64} />
           <span className="text-white font-bold text-xl tracking-widest gold-shimmer">TURBI</span>
         </Link>
 

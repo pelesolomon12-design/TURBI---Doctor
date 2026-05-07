@@ -34,7 +34,7 @@ export default function LogoImage({ size = 56 }: { size?: number }) {
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: size, height: size, objectFit: "contain" }}
+      style={{ width: size, height: size, objectFit: "contain", display: "block" }}
     />
   );
 }
