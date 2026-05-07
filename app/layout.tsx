@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col">
         <LanguageProvider>
           <NavClient />
-          <div className="flex-1 pt-16">{children}</div>
+          <div className="flex-1 pt-24">{children}</div>
           <FooterClient />
         </LanguageProvider>
       </body>
