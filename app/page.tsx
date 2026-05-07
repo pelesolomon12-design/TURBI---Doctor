@@ -103,33 +103,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Light → Dark transition */}
-      <div className="h-24 bg-gradient-to-b from-[#f2ede4] to-[#0d1117]" />
-
       {/* ─── HOW IT WORKS ─── */}
-      <section className="py-24 px-6 bg-hero">
+      <section className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-sm font-semibold tracking-widest text-amber-400 mb-3 fade-in">{t.steps.label}</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white fade-in">{t.steps.title}</h2>
+            <p className="text-sm font-semibold tracking-widest text-amber-600 mb-3 fade-in">{t.steps.label}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 fade-in">{t.steps.title}</h2>
             <div className="gold-divider max-w-24 mx-auto mt-4 fade-in" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {t.steps.items.map((s, i) => (
               <div key={i} className="fade-in text-center group">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-amber-400 border-opacity-40 mb-5 group-hover:border-opacity-80 transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full border border-amber-400 border-opacity-60 mb-5 group-hover:border-opacity-100 transition-all duration-300">
                   <span className="gold-shimmer font-bold text-lg">{s.num}</span>
                 </div>
-                <h3 className="font-bold text-white text-base mb-2">{s.title}</h3>
+                <h3 className="font-bold text-gray-900 text-base mb-2">{s.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Dark → Light transition */}
-      <div className="h-24 bg-gradient-to-b from-[#16213e] to-[#f2ede4]" />
 
       {/* ─── TESTIMONIALS ─── */}
       <section id="testimonials" className="py-20 px-6">
