@@ -7,6 +7,9 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "TURBI — הדרך הטבעית לאיזון והחלמה",
   description: "ערכה טיפולית מקצועית מבוססת מחקר. הזמינו עכשיו עם משלוח עד הבית.",
+  openGraph: {
+    images: ["/hero.jpeg"],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
