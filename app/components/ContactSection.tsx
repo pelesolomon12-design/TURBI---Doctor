@@ -1,8 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/app/providers/LanguageProvider";
 
 export default function ContactSection() {
+  const { t } = useLanguage();
+  const c = t.contact;
+
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -33,11 +37,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 px-6 bg-section-alt">
+    <section id="contact" className="py-20 px-6">
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-12">
-          <p className="text-sm font-semibold tracking-widest text-amber-600 mb-3 fade-in">נשמח לעזור</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 fade-in">צרו קשר</h2>
+          <p className="text-sm font-semibold tracking-widest text-amber-600 mb-3 fade-in">{c.label}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 fade-in">{c.title}</h2>
           <div className="gold-divider max-w-24 mx-auto mt-4 fade-in" />
         </div>
 
@@ -45,30 +49,30 @@ export default function ContactSection() {
           {success ? (
             <div className="text-center py-8">
               <div className="text-6xl mb-4">✅</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">ההודעה נשלחה!</h3>
-              <p className="text-gray-500">נחזור אליך בהקדם האפשרי.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{c.successTitle}</h3>
+              <p className="text-gray-500">{c.successDesc}</p>
               <button onClick={() => setSuccess(false)} className="mt-6 text-amber-600 underline text-sm">
-                שלח הודעה נוספת
+                {c.sendAnother}
               </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">שם מלא *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{c.name}</label>
                   <input
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
-                    placeholder="ישראל ישראלי"
+                    placeholder={c.namePlaceholder}
                     value={form.name}
                     onChange={set("name")}
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">טלפון</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{c.phone}</label>
                   <input
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
-                    placeholder="0501234567"
+                    placeholder={c.phonePlaceholder}
                     value={form.phone}
                     onChange={set("phone")}
                     type="tel"
@@ -77,10 +81,10 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">מייל *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{c.email}</label>
                 <input
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  placeholder="you@email.com"
+                  placeholder={c.emailPlaceholder}
                   value={form.email}
                   onChange={set("email")}
                   type="email"
@@ -89,11 +93,11 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">הודעה *</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">{c.message}</label>
                 <textarea
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none"
                   rows={4}
-                  placeholder="איך נוכל לעזור?"
+                  placeholder={c.messagePlaceholder}
                   value={form.message}
                   onChange={set("message")}
                   required
@@ -109,7 +113,7 @@ export default function ContactSection() {
                 disabled={loading}
                 className="w-full btn-gold py-4 rounded-xl font-bold text-base"
               >
-                {loading ? "שולח..." : "שלח הודעה ←"}
+                {loading ? c.sending : c.submit}
               </button>
             </form>
           )}

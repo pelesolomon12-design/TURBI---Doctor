@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { mainProduct, formatPrice } from "@/lib/products";
+import { useLanguage } from "@/app/providers/LanguageProvider";
 
 type ShippingData = {
   fullName: string;
@@ -15,25 +16,28 @@ type ShippingData = {
 
 const SHIPPING_PRICE = mainProduct.shipping;
 
-function validate(data: ShippingData): Partial<Record<keyof ShippingData, string>> {
-  const errors: Partial<Record<keyof ShippingData, string>> = {};
-  if (!data.fullName.trim() || data.fullName.trim().length < 2) errors.fullName = "שם מלא נדרש";
-  if (!/^05\d{8}$/.test(data.phone.replace(/\s/g, ""))) errors.phone = "מספר טלפון לא תקין (לדוגמה: 0501234567)";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.email = "כתובת מייל לא תקינה";
-  if (!data.city.trim()) errors.city = "עיר נדרשת";
-  if (!data.street.trim()) errors.street = "רחוב ומספר נדרשים";
-  return errors;
-}
-
 type Provider = "meshulam" | "paypal";
 
 export default function ShippingForm() {
+  const { t } = useLanguage();
+  const c = t.checkout;
+
   const [form, setForm] = useState<ShippingData>({
     fullName: "", phone: "", email: "", city: "", street: "", apartment: "", notes: "",
   });
   const [errors, setErrors] = useState<Partial<Record<keyof ShippingData, string>>>({});
   const [loading, setLoading] = useState<Provider | null>(null);
   const [apiError, setApiError] = useState<string | null>(null);
+
+  function validate(data: ShippingData): Partial<Record<keyof ShippingData, string>> {
+    const errs: Partial<Record<keyof ShippingData, string>> = {};
+    if (!data.fullName.trim() || data.fullName.trim().length < 2) errs.fullName = c.errors.fullName;
+    if (!/^05\d{8}$/.test(data.phone.replace(/\s/g, ""))) errs.phone = c.errors.phone;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errs.email = c.errors.email;
+    if (!data.city.trim()) errs.city = c.errors.city;
+    if (!data.street.trim()) errs.street = c.errors.street;
+    return errs;
+  }
 
   const set = (field: keyof ShippingData) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
@@ -66,21 +70,21 @@ export default function ShippingForm() {
   const total = mainProduct.price + SHIPPING_PRICE;
 
   return (
-    <div className="space-y-8" dir="rtl">
+    <div className="space-y-8">
       {/* Order summary */}
       <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
-        <h2 className="font-bold text-gray-800 mb-4 text-lg">סיכום הזמנה</h2>
+        <h2 className="font-bold text-gray-800 mb-4 text-lg">{c.summary}</h2>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
             <span className="text-gray-600">{mainProduct.name}</span>
             <span className="font-semibold">{formatPrice(mainProduct.price)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">משלוח</span>
+            <span className="text-gray-600">{c.shipping}</span>
             <span className="font-semibold">{formatPrice(SHIPPING_PRICE)}</span>
           </div>
           <div className="border-t border-gray-200 pt-2 flex justify-between font-bold text-base">
-            <span>סה&quot;כ</span>
+            <span>{c.total}</span>
             <span className="text-amber-600">{formatPrice(total)}</span>
           </div>
         </div>
@@ -88,41 +92,41 @@ export default function ShippingForm() {
 
       {/* Shipping form */}
       <div>
-        <h2 className="font-bold text-gray-800 mb-5 text-lg">פרטי משלוח</h2>
+        <h2 className="font-bold text-gray-800 mb-5 text-lg">{c.shippingTitle}</h2>
         <div className="space-y-4">
-          <Field label="שם מלא *" error={errors.fullName}>
-            <input className={input(errors.fullName)} placeholder="ישראל ישראלי" value={form.fullName} onChange={set("fullName")} />
+          <Field label={c.fields.fullName} error={errors.fullName}>
+            <input className={input(errors.fullName)} placeholder={c.placeholders.fullName} value={form.fullName} onChange={set("fullName")} />
           </Field>
 
           <div className="grid grid-cols-2 gap-4">
-            <Field label="טלפון *" error={errors.phone}>
-              <input className={input(errors.phone)} placeholder="0501234567" value={form.phone} onChange={set("phone")} type="tel" />
+            <Field label={c.fields.phone} error={errors.phone}>
+              <input className={input(errors.phone)} placeholder={c.placeholders.phone} value={form.phone} onChange={set("phone")} type="tel" />
             </Field>
-            <Field label="מייל *" error={errors.email}>
-              <input className={input(errors.email)} placeholder="you@email.com" value={form.email} onChange={set("email")} type="email" />
+            <Field label={c.fields.email} error={errors.email}>
+              <input className={input(errors.email)} placeholder={c.placeholders.email} value={form.email} onChange={set("email")} type="email" />
             </Field>
           </div>
 
-          <Field label="עיר *" error={errors.city}>
-            <input className={input(errors.city)} placeholder="תל אביב" value={form.city} onChange={set("city")} />
+          <Field label={c.fields.city} error={errors.city}>
+            <input className={input(errors.city)} placeholder={c.placeholders.city} value={form.city} onChange={set("city")} />
           </Field>
 
           <div className="grid grid-cols-3 gap-4">
             <div className="col-span-2">
-              <Field label="רחוב ומספר *" error={errors.street}>
-                <input className={input(errors.street)} placeholder="הרצל 12" value={form.street} onChange={set("street")} />
+              <Field label={c.fields.street} error={errors.street}>
+                <input className={input(errors.street)} placeholder={c.placeholders.street} value={form.street} onChange={set("street")} />
               </Field>
             </div>
-            <Field label="דירה" error={undefined}>
-              <input className={input()} placeholder="3" value={form.apartment} onChange={set("apartment")} />
+            <Field label={c.fields.apartment} error={undefined}>
+              <input className={input()} placeholder={c.placeholders.apartment} value={form.apartment} onChange={set("apartment")} />
             </Field>
           </div>
 
-          <Field label="הערות למשלוח" error={undefined}>
+          <Field label={c.fields.notes} error={undefined}>
             <textarea
               className={`${input()} resize-none`}
               rows={2}
-              placeholder="קוד אינטרקום, שעות מועדפות..."
+              placeholder={c.placeholders.notes}
               value={form.notes}
               onChange={set("notes")}
             />
@@ -132,7 +136,7 @@ export default function ShippingForm() {
 
       {/* Payment */}
       <div>
-        <h2 className="font-bold text-gray-800 mb-4 text-lg">בחירת אמצעי תשלום</h2>
+        <h2 className="font-bold text-gray-800 mb-4 text-lg">{c.paymentTitle}</h2>
 
         {apiError && (
           <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl p-3 text-sm mb-4 text-center">
@@ -146,7 +150,7 @@ export default function ShippingForm() {
             disabled={loading !== null}
             className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 text-white font-bold py-4 rounded-xl transition-colors text-base flex items-center justify-center gap-2"
           >
-            {loading === "meshulam" ? "מעבד..." : "🔒 תשלום באשראי"}
+            {loading === "meshulam" ? c.processing : `🔒 ${c.payCredit}`}
           </button>
 
           <div className="flex items-center gap-3">
@@ -160,7 +164,7 @@ export default function ShippingForm() {
             disabled={loading !== null}
             className="w-full bg-[#FFC439] hover:bg-[#f0b429] disabled:opacity-50 text-[#003087] font-bold py-4 rounded-xl transition-colors text-base flex items-center justify-center gap-2"
           >
-            {loading === "paypal" ? "מעבד..." : (
+            {loading === "paypal" ? c.processing : (
               <span>
                 <span className="text-[#003087]">Pay</span><span className="text-[#009cde]">Pal</span>
               </span>
@@ -168,9 +172,7 @@ export default function ShippingForm() {
           </button>
         </div>
 
-        <p className="text-center text-xs text-gray-400 mt-4">
-          🔒 התשלום מוצפן ומאובטח · פרטי הכרטיס לא נשמרים אצלנו
-        </p>
+        <p className="text-center text-xs text-gray-400 mt-4">{c.secureNote}</p>
       </div>
     </div>
   );
