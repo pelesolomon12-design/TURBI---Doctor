@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { mainProduct, formatPrice } from "@/lib/products";
 import ScrollAnimator from "./components/ScrollAnimator";
 import VideoSection from "./components/VideoSection";
@@ -36,14 +35,6 @@ export default function HomePage() {
 
       {/* ─── HERO ─── */}
       <section className="bg-hero min-h-screen flex flex-col items-center justify-center text-center px-6 py-24 relative overflow-hidden">
-        {/* Hero background image */}
-        <Image
-          src="/hero.jpeg"
-          alt="TURBI"
-          fill
-          className="object-cover opacity-20"
-          priority
-        />
         {/* Decorative circles */}
         <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-amber-500 opacity-5 blur-3xl" />
         <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-blue-500 opacity-5 blur-3xl" />
